@@ -1,0 +1,10 @@
+# 本書の検証機で動作した版の固定リスト（第10章）。同じ版で揃えるなら: pip install -r requirements-lock.txt
+kotobacore>=1.0.1  # 第3章・第5章で修正した不具合を含む版。検証機は開発版（GitHub main）を使用
+fastapi==0.141.1
+Jinja2==3.1.6
+openpyxl==3.1.5
+pypdfium2==5.12.1
+python-docx==1.2.0
+python-multipart==0.0.32
+starlette==1.6.0
+uvicorn==0.52.4

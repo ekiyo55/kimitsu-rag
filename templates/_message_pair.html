@@ -1,0 +1,19 @@
+<div class="msg msg-user"><div class="bubble">{{ question }}</div></div>
+<div class="msg msg-ai">
+  <div class="bubble">{{ answer }}</div>
+  <details class="sources">
+    <summary>参照元を見る（{{ sources|length }}件）</summary>
+    <ul>
+      {% for s in sources %}
+      <li>
+        <span class="doc-name">{{ s.doc }}</span>「{{ s.snippet }}」
+        {% if s.page %}
+        <a class="src-link" href="/documents/{{ s.file }}#page={{ s.page }}" target="_blank">原本を開く（{{ s.page }}ページ目）</a>
+        {% else %}
+        <a class="src-link" href="/documents/{{ s.file }}" target="_blank">原本を開く</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+</div>

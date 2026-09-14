@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>自分だけのAIに参考書を持たせよう（UI試作）</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">🔎 自分だけのRAG（試作版）</div>
+    <div class="tabs">
+      <a href="/" class="tab active">チャット</a>
+      <a href="/history" class="tab">履歴</a>
+      <span class="tab disabled">資料管理</span>
+      <span class="tab disabled">設定</span>
+    </div>
+  </nav>
+
+  <div class="notice">Ollama + KotobaCoreで実際に`documents/`内の社内規程を検索して回答します。</div>
+
+  <main class="chat-wrap">
+    <div id="chat-log" class="chat-log">
+      {% if not messages %}
+      <p class="empty-note">社内規程について質問してみてください（例:「タクシー利用の経費精算は?」「こんなことを言ったらパワハラですか?」）。</p>
+      {% endif %}
+      {% for m in messages %}
+        {% if m.role == "user" %}
+        <div class="msg msg-user"><div class="bubble">{{ m.text }}</div></div>
+        {% else %}
+        <div class="msg msg-ai">
+          <div class="bubble">{{ m.text }}</div>
+          <details class="sources">
+            <summary>参照元を見る（{{ m.sources|length }}件）</summary>
+            <ul>
+              {% for s in m.sources %}
+              <li>
+                <span class="doc-name">{{ s.doc }}</span>「{{ s.snippet }}」
+                <a class="src-link" href="/documents/{{ s.file }}#page={{ s.page }}" target="_blank">原本を開く（{{ s.page }}ページ目）</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </details>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <form id="ask-form" class="ask-form">
+      <input type="text" name="question" id="question" placeholder="社内資料について質問する…" autocomplete="off" required>
+      <button type="submit">送信</button>
+    </form>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

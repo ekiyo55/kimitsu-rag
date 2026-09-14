@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>質問履歴 - 自分だけのAIに参考書を持たせよう（UI試作）</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">🔎 自分だけのRAG（試作版）</div>
+    <div class="tabs">
+      <a href="/" class="tab">チャット</a>
+      <a href="/history" class="tab active">履歴</a>
+      <span class="tab disabled">資料管理</span>
+      <span class="tab disabled">設定</span>
+    </div>
+  </nav>
+
+  <div class="notice">セッションをまたいで残る質問履歴（監査ログ）です。ここに表示される内容はSQLiteに永続保存されています。</div>
+
+  <main class="chat-wrap">
+    <div class="history-log">
+      {% if not entries %}
+      <p class="empty-note">まだ質問履歴がありません。チャット画面で何か質問してみてください。</p>
+      {% endif %}
+      {% for e in entries %}
+      <div class="history-entry">
+        <div class="history-meta">{{ e.asked_at }}</div>
+        <div class="history-q">Q. {{ e.question }}</div>
+        <div class="history-a">{{ e.answer }}</div>
+        <details class="sources">
+          <summary>参照元を見る（{{ e.sources|length }}件）</summary>
+          <ul>
+            {% for s in e.sources %}
+            <li>
+              <span class="doc-name">{{ s.doc }}</span>「{{ s.snippet }}」
+              {% if s.page %}
+              <a class="src-link" href="/documents/{{ s.file }}#page={{ s.page }}" target="_blank">原本を開く（{{ s.page }}ページ目）</a>
+              {% else %}
+              <a class="src-link" href="/documents/{{ s.file }}" target="_blank">原本を開く</a>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>

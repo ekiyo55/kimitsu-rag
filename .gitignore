@@ -1,0 +1,11 @@
+# 実行時に生成されるもの（質問履歴・埋め込みキャッシュ）は公開しない
+history.db
+embed_cache.json
+__pycache__/
+*.pyc
+
+# 民間サイト由来のサンプル資料は再配布可否が不明のため同梱しない（入手先は documents/README.md）
+documents/ハラスメント防止規程.docx
+
+# 研究用の政府資料（外務省PDF・計18MB）は同梱しない（入手先は documents_research/README.md）
+documents_research/*.pdf
