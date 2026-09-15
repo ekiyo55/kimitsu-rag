@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>自分だけのAIに参考書を持たせよう（UI試作）</title>
+<title>kimitsu-rag ― 自分だけのローカルAI</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <nav class="topnav">
-    <div class="brand">🔎 自分だけのRAG（試作版）</div>
+    <div class="brand">🔎 kimitsu-rag ― 自分だけのローカルAI</div>
     <div class="tabs">
       <a href="/" class="tab active">チャット</a>
       <a href="/history" class="tab">履歴</a>
@@ -16,7 +16,7 @@
     </div>
   </nav>
 
-  <div class="notice">Ollama + KotobaCoreで実際に`documents/`内の社内規程を検索して回答します。</div>
+  <div class="notice">資料フォルダの中身だけを根拠に答えます。答えの下の「参照元を見る」で根拠を確かめ、「原本を開く」で元の資料に当たってください。</div>
 
   <main class="chat-wrap">
     <div id="chat-log" class="chat-log">

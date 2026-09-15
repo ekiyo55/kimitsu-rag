@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>質問履歴 - 自分だけのAIに参考書を持たせよう（UI試作）</title>
+<title>質問履歴 ― kimitsu-rag</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <nav class="topnav">
-    <div class="brand">🔎 自分だけのRAG（試作版）</div>
+    <div class="brand">🔎 kimitsu-rag ― 自分だけのローカルAI</div>
     <div class="tabs">
       <a href="/" class="tab">チャット</a>
       <a href="/history" class="tab active">履歴</a>
@@ -16,7 +16,7 @@
     </div>
   </nav>
 
-  <div class="notice">セッションをまたいで残る質問履歴（監査ログ）です。ここに表示される内容はSQLiteに永続保存されています。</div>
+  <div class="notice">アプリを止めても残る質問履歴（監査ログ）です。誰が聞いたかは記録しません。答えには資料の条文が引用されるので、このファイル（history.db）は資料と同じ機密性で扱ってください。</div>
 
   <main class="chat-wrap">
     <div class="history-log">
